@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
 </head>
+
 <body>
-  <h3>hey</h3>
+  <div class="fixed inset-0 bg-[#00F6FF]/50 -z-20"></div>
+
+  <div class="fixed inset-0 -z-10">
+    <img src="/images/main.jpg" class="w-full h-full object-cover opacity-30" />
+  </div>
+
+  <nav class="fixed top-0 left-0 w-full z-50 ">
+    <%- include("partials/header") %>
+  </nav>
+
+  <main class="relative z-10 p-3 text-white">
+    <h2 class="text-8xl font-semibold font-serif text-shadow-lg animate-pulse mx-50 mt-15">IIEST, SHIBPUR</h2>
+    
+  </main>
+
 </body>
+
 </html>

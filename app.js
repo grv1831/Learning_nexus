@@ -36,11 +36,11 @@ app.get("/academic", isLoggedIn, (req,res) => {
 })
 
 app.get("/campus", (req,res) => {
-  res.render("campus");
+  res.render("campus", { user: req.user });
 })
 
 app.get("/know", (req,res) => {
-  res.render("know");
+  res.render("know", { user: req.user });
 })
 
 app.get("/logout", (req, res) => {
