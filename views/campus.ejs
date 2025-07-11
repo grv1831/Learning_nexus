@@ -20,11 +20,91 @@
     <%- include("partials/header") %>
   </nav>
 
-  <main class="relative z-10 p-3 text-white">
+  <div class="fixed z-10 p-3 text-white">
     <h2 class="text-8xl font-semibold font-serif text-shadow-lg animate-pulse mx-50 mt-15">IIEST, SHIBPUR</h2>
-    
-  </main>
+  </div>
 
+<div>
+  <h2 class="absolute top-10 left-10 text-3xl font-bold text-white uppercase tracking-wide px-10 py-30 rounded shadow-lg">
+  Cultural Events
+</h2>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 px-10 pt-50 relative z-10 ">
+
+    <div onclick="openModal('/images/path.jpg', 'This is image 1')"
+      class="cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl">
+      <img src="/images/path.jpg" alt="1" class="w-full h-44 object-cover rounded-lg border-4 border-white shadow-md" />
+    </div>
+    <div onclick="openModal('/images/path.jpg', 'This is image 2')"
+      class="cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl">
+      <img src="/images/path.jpg" alt="2" class="w-full h-44 object-cover rounded-lg border-4 border-white shadow-md" />
+    </div>
+    <div onclick="openModal('/images/path.jpg', 'This is image 3')"
+      class="cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl">
+      <img src="/images/path.jpg" alt="3" class="w-full h-44 object-cover rounded-lg border-4 border-white shadow-md" />
+    </div>
+    <!-- Add more images similarly -->
+  </div>
+
+   <h2 class="text-3xl font-bold text-white text-center mt-16 mb-6 uppercase tracking-wide">
+    Cultural Events
+  </h2>
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 px-10 pt-50 relative z-10">
+
+    <div onclick="openModal('/images/path.jpg', 'This is image 1')"
+      class="cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl">
+      <img src="/images/path.jpg" alt="1" class="w-full h-44 object-cover rounded-lg border-4 border-white shadow-md" />
+    </div>
+    <div onclick="openModal('/images/path.jpg', 'This is image 2')"
+      class="cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl">
+      <img src="/images/path.jpg" alt="2" class="w-full h-44 object-cover rounded-lg border-4 border-white shadow-md" />
+    </div>
+    <div onclick="openModal('/images/path.jpg', 'This is image 3')"
+      class="cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl">
+      <img src="/images/path.jpg" alt="3" class="w-full h-44 object-cover rounded-lg border-4 border-white shadow-md" />
+    </div>
+    <!-- Add more images similarly -->
+  </div>
+
+</div>
+
+
+
+
+
+  <div id="popupModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 mt-100">
+    <div class="bg-white p-6 rounded-lg w-full max-w-5xl relative flex flex-col md:flex-row gap-6 shadow-xl">
+
+      <button onclick="closeModal()"
+        class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-2xl font-bold">&times;</button>
+      <div class="md:w-1/2 w-full">
+        <img id="modalImage" src="" alt="Popup Image" class="w-full h-64 md:h-full object-cover rounded-lg shadow-md" />
+      </div>
+      <div class="md:w-1/2 w-full text-left overflow-y-auto max-h-[90vh]">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Info</h2>
+        <div id="modalText" class="text-gray-700 space-y-4 text-base leading-relaxed">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function openModal(imageSrc, paragraphText) {
+      document.getElementById("modalImage").src = imageSrc;
+
+      const modalText = document.getElementById("modalText");
+      if (Array.isArray(paragraphText)) {
+        modalText.innerHTML = paragraphText.map(p => `<p>${p}</p>`).join("");
+      } else {
+        modalText.innerHTML = `<p>${paragraphText}</p>`;
+      }
+
+      document.getElementById("popupModal").classList.remove("hidden");
+    }
+
+    function closeModal() {
+      document.getElementById("popupModal").classList.add("hidden");
+    }
+  </script>
 </body>
 
 </html>
