@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-   <script>
+  <script>
     function openPopup() {
       document.getElementById("log").style.display = "flex";
     }
@@ -22,116 +23,215 @@
   </script>
 
   <style>
-    #log {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.6);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
+     #log {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .popup-content {
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      max-width: 400px;
-      width: 90%;
-      position: relative;
-      text-align: center;
-    }
+  .popup-content {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    max-width: 340px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
 
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 20px;
-      cursor: pointer;
-      color: #888;
-    }
+  .close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #888;
+  }
 
-    .hover-text {
-      background: #1f2937;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 14px;
-      white-space: nowrap;
-    }
+  .google-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #fff;
+    color: #444;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+    width: fit-content;
+    margin: 0 auto 16px auto;
+  }
 
-    .google-login-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background-color: #fff;
-      color: #444;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      padding: 10px 16px;
-      font-size: 16px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.3s ease, box-shadow 0.2s ease;
-      width: fit-content;
-      margin: 0 auto;
-    }
+  .google-login-btn img {
+    height: 18px;
+    width: 18px;
+  }
 
-    .google-login-btn img {
-      height: 20px;
-      width: 20px;
-    }
+  .google-login-btn:hover {
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
 
-    .google-login-btn:hover {
-      background-color: #f8f8f8;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+
+  input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  .or-divider {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+    color: #888;
+    font-size: 13px;
+  }
+
+  .or-divider::before,
+  .or-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ccc;
+    margin: 0 8px;
+  }
   </style>
 </head>
+
 <body>
-  
-   <div class="top flex gap-60 p-2">
-      <div class="logo w-45">
-        <img src="/images/logo.png" class="w-full h-full object-contain" />
-      </div>
-      <div
-        class="navbar bg-gray-950 flex gap-10 rounded w-xl h-9 justify-center justify-items-center items-center text-base ">
-        <div class="text-gray-50"><a href="/">Home</a></div>
-        <div class="text-gray-50 relative" id="hoverText"><a href="/academic"
-            onmouseover="document.getElementById('hoverHelp').style.display='block'"
-            onmouseout="document.getElementById('hoverHelp').style.display='none'" >Academic Resources</a>
-          
-          <% if (!user) { %>
-            <div id="hoverHelp" class="hover-text text-gray-50 mt-1 absolute" style="display: none;">
+
+  <div class="top flex gap-60 p-2">
+    <div class="logo w-45">
+      <img src="/images/logo.png" class="w-full h-full object-contain" />
+    </div>
+    <div
+      class="navbar bg-gray-950 flex gap-10 rounded w-xl h-9 justify-center justify-items-center items-center text-base ">
+      <div class="text-gray-50"><a href="/">Home</a></div>
+      <div class="text-gray-50 relative group">
+        <a href="/academic" class="hover:none cursor-pointer">
+          Academic Resources
+        </a>
+
+        <% if (!user) { %>
+          <div id="hoverHelp"
+            class="hover-text absolute mt-1 left-1/2 -translate-x-1/2 px-3 py-1 bg-gray-800 text-gray-50 text-sm rounded-md opacity-0 group-hover:opacity-100 transition duration-200 pointer-events-none">
             Please log in to access this.
           </div>
           <% } %>
+      </div>
 
-        </div>
-        <div class="text-gray-50"><a href="/campus">Campus Insights</a></div>
-        <div class="text-gray-50"><a href="/know">Know Us</a></div>
-      </div>
-      <div class="login w-1/10">
-        <% if (user) { %>
-          <a href="/logout"
-            class="px-4 py-2 bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700 transition duration-300">Logout</a>
-          <% } else { %>
-            <a href="#"
-              class="px-0 py-1 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
-              onclick="openPopup()">Login/Sign Up</a>
-            <% } %>
-      </div>
+      <div class="text-gray-50"><a href="/campus">Campus Insights</a></div>
+      <div class="text-gray-50"><a href="/know">Know Us</a></div>
     </div>
-    <div id="log">
-    <div class="popup-content">
+    <div class="login w-1/10">
+      <% if (user) { %>
+        <a href="/logout"
+          class="px-4 py-2 bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700 transition duration-300">Logout</a>
+        <% } else { %>
+          <a href="#"
+            class="px-0 py-1 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+            onclick="openPopup()">Login/Sign Up</a>
+          <% } %>
+    </div>
+  </div>
+  <div id="log">
+    <div class="popup-content ">
       <span class="close-btn" onclick="closePopup()">×</span>
-      <h3 class="text-2xl py-2">Login/Sign Up</h3>
+      <h3 class="text-2xl py-2">Login / Sign Up</h3>
+
+      <!-- Google Login Button -->
       <a href="/auth/google" class="google-login-btn">
         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo">
         <span>Login with Google</span>
       </a>
 
+      <!-- OR Divider -->
+      <div class="or-divider">OR</div>
+
+     <!-- Create User Form (AJAX) -->
+<form id="createUserForm">
+  <input type="text" placeholder="Username" name="username" required>
+  <input type="email" placeholder="Email" name="email" required>
+  <input type="password" placeholder="Password" name="password" required>
+  <input type="submit" value="Create User">
+  <div id="createMessage" class="text-sm mt-2"></div>
+</form>
+
+
+      <!-- OR Divider -->
+      <div class="or-divider">OR</div>
+
+      <!-- Login Form -->
+      <form action="/login" method="post">
+        <input type="email" placeholder="Email" name="email" required>
+        <input type="password" placeholder="Password" name="password" required>
+        <input type="submit" value="Login">
+      </form>
     </div>
   </div>
+
+  <script>
+  document.getElementById("createUserForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const body = {
+      username: formData.get("username"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
+
+    const res = await fetch("/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+
+    const result = await res.json();
+    const msg = document.getElementById("createMessage");
+
+    if (res.ok) {
+      msg.textContent = "User created! Now login below.";
+      msg.className = "text-green-600 text-sm mt-2";
+      form.reset(); // optional
+    } else {
+      msg.textContent = result.message || "Error creating user.";
+      msg.className = "text-red-500 text-sm mt-2";
+    }
+  });
+</script>
+
 </body>
+
 </html>

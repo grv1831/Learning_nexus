@@ -3,14 +3,29 @@ const uri = "mongodb+srv://1831gkumar:grv%40123@cluster0.l8fn9i7.mongodb.net/lea
 
 
 const userSchema = new mongoose.Schema({
-  googleId: {
+   googleId: {
+    type: String,
+    unique: true,
+    sparse: true,
+    required: function () {
+      return !this.password;  // ✅ Only required if password is missing
+    }
+  },
+  displayName: String,
+  email: {
     type: String,
     required: true,
     unique: true
   },
-  displayName: String,
-  email: String,
-  photo: String
+  photo: String,
+  username: String,
+  password: {
+    type: String,
+    required: function () {
+      return !this.googleId; // ✅ Only required if googleId is missing
+    }
+  }
 });
+
 
 module.exports = mongoose.model("user", userSchema);
