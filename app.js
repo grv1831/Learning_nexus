@@ -1,14 +1,12 @@
 require("./config/db");
+require("dotenv").config();
+require("./config/passport");
+
 const express = require('express');
+const app = express();
 
 const session = require("express-session");
 const passport = require("passport");
-require("dotenv").config();
-
-require("./config/passport");
-
-const app = express();
-
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const userModel = require("./models/user");
@@ -19,16 +17,12 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(cookieParser());
-
-
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -67,7 +61,6 @@ app.post("/create", async (req, res) => {
 
     const existingUser = await userModel.findOne({ email });
     if (existingUser) {
-      // Prevent duplicate if the user already exists via Google
       return res.send("User already exists. Try logging in.");
     }
 
@@ -81,9 +74,6 @@ app.post("/create", async (req, res) => {
     });
 
      res.status(200).json({ message: "User created. Please login." });
-    //const token = jwt.sign({ email }, process.env.JWT_SECRET);//
-   // res.cookie("token", token);//
-    //res.redirect("/"); //
   } catch (err) {
     console.error(err);
     res.send("Something went wrong during registration.");
@@ -138,7 +128,7 @@ app.get("/logout", (req, res) => {
 
 app.get("/auth/google", passport.authenticate("google", {
   scope: ["profile", "email"],
-  prompt: "select_account" // forces account chooser every time
+  prompt: "select_account"
 }));
 
 app.get("/auth/google/callback",
@@ -154,21 +144,18 @@ app.get("/profile", isLoggedIn, (req, res) => {
 
 
 function isLoggedIn(req, res, next) {
-  // If authenticated with Passport (Google)
   if (req.isAuthenticated && req.isAuthenticated()) {
     return next();
   }
 
-  // Check for JWT token in cookies
   const token = req.cookies.token;
   if (token) {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      // Optionally fetch full user details from DB:
       userModel.findOne({ email: decoded.email }).then(user => {
         if (!user) return res.redirect("/");
 
-        req.user = user; // ✅ attach full user object to request
+        req.user = user;
         return next();
       });
     } catch (err) {
