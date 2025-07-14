@@ -1,15 +1,13 @@
 
   .top{
-    width: 100%;
     display: flex;
-    height: 90px;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5vw;
   }
   .logo{
     display: flex;
     width: 15vw;
+    font-weight: 400;
   }
   .navbar{
     background-color: #0a0a0a;
@@ -48,6 +46,10 @@
 }
 .login{
   width: 9vw;
+  font-size: 1em;
+}
+.in{
+  font-size: 5vw;
 }
 
   @media (max-width:600px) {
@@ -77,8 +79,11 @@
       font-size: 0.6em;
     }
     .login{
-      width: 5vw;
-      font-size: 0.4em;
+      width: 3vw;
+      font-size: 2vw;
+    }
+    .in{
+      font-size: 8vw;
     }
   }
 

@@ -6,36 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="/styles/index.css">
 </head>
 
 <body>
-  <div class="bg-violet-300 w-screen h-screen relative overflow-hidden">
-     <%- include("partials/header") %>
-    <div class="main flex">
-      <div class="left p-2">
-        <div>
-          <h2 class="text-8xl font-serif font-medium text-white drop-shadow-[2px_2px_2px_black]">IIEST HUB</h2>
-        </div>
-        <div>
-          <pre class="text-5xl font-serif">Your Ultimate <br>      College Companian</pre>
-        </div>
-        <div class="boy w-82 aspect-square overflow-hidden">
-          <img src="/images/boy.png" alt="boy" class="w-full h-full object-contain">
-        </div>
-      </div>
-      <div class="right p-2">
-        <div class="aspect-square overflow-hidden w-160">
-          <img src="/images/college.png" alt="college" class="w-full h-full object-contain">
-        </div>
-        <div class="fixed bottom-0 right-0 z-50 w-60 aspect-square overflow-hidden">
-          <img src="/images/group.png" alt="group" class="w-full h-full object-contain">
-        </div>
-
-      </div>
+  <div class="box">
+    <div class="navy">
+      <%- include("partials/header") %>
     </div>
+    
+      <div class="content">
+        <div class="left">
+          <div>
+          <h2>IIEST HUB</h2></div>
+          <div><pre class="lcontent">Your Ultimate <br>      College Companian</pre></div>
+          <div class="boy">
+            <img src="/images/boy.png" alt="boy" class="w-full h-full object-contain">
+          </div>
+        </div>
+        <div class="right">
+          <div class="college">
+            <img src="/images/college.png" alt="college" class="w-full h-full object-contain">
+          </div>
+          <div class="bottom-0 right-0 z-50 w-60">
+            <img src="/images/group.png" alt="group" class="w-full h-full object-contain">
+          </div>
+
+        </div>
+      </div>
   </div>
 
-  
+
 
 
 </html>
