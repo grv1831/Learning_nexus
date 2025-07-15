@@ -48,6 +48,16 @@ html, body {
 .boy{
   width: 10rem; 
 }
+.college{
+  width: 95vw;
+}
+.grp{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  width: 15rem;
+}
 
 @media (max-width:600px) {
   .content{
@@ -69,13 +79,31 @@ html, body {
 
   .left h2{
     font-size: 3rem;
+    
+    text-align: center;
   }
   .lcontent{
     font-size: 1.3rem;
+    margin-left: 0.5em;
   }
   .boy{
-    width: 50vw;
+    position: absolute;
+    width: 30vw;
+    bottom: -0.8em;
+    left: 0;
+    z-index: 10;
+
   }
+  .college{
+  width: 95vw;
   
+}
+.grp{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  width: 7rem;
+}
   
 }
